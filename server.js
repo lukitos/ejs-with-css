@@ -14,24 +14,33 @@ app.use(cors());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+var counter = 3;
+
+var db = [
+  {
+    id: 1,
+    name: "dave"
+  },
+  {
+    id: 2,
+    name: 'mike'
+  }
+]
+
 app.get('/', function (req, res) {
   res.render('index', {
-    someArray: [{
-      name: "dave"
-    },
-    {
-      name: 'mike'
-    }]
+    someArray: db
   });
 });
 
-app.post('/auth', function (req, res) {
-  if (req.body.username === 'something' && req.body.password === 'somepassword') {
-    res.redirect('/user');
-  } else {
-    res.redirect('home');
-  }
-});
+app.post('/add', function(req, res) {
+  db.push({
+    id: counter,
+    name: req.body.name
+  })
+  counter++;
+  res.redirect('/')
+})
 
 app.listen(port, function () {
   console.log('listening on: ', port);
