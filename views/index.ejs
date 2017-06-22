@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <h2>List of names</h2>
+
+    <ul>
+      <% for(var i = 0; i < someArray.length; i++) { %>
+        <% if(someArray[i].name === 'mike') { %>
+        <li><%= 'not mike' %> <%= 'not mike' %></li>
+        <% } else { %>
+        <li><%= someArray[i].name %></li>
+        <% } %>
+      <% } %>
+    </ul>
+
+  </body>
+</html>
